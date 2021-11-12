@@ -1,0 +1,50 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: mail-server
+  rabbitmq:
+    username: ruby
+    password: ruby
+    virtual-host: /ruby
+    host: 106.14.25.82
+    port: 5672
+    listener:
+      simple:
+        # 开启手动确认
+        acknowledge-mode: manual
+
+  redis:
+    host: localhost
+    port: 6379
+    # 超时时间
+    timeout: 10000ms
+    database: 0
+    lettuce:
+      pool:
+        # 最大连接处
+        max-active: 1024
+        # 空闲连接数
+        max-idle: 200
+        # 最大连接阻塞等待时间
+        max-wait: 10000ms
+
+  mail:
+    # 配置 SMTP 服务器地址
+    host: smtp.163.com
+    protocol: smtp
+    # 发送者邮箱
+    username: randytaylor@163.com
+    # 配置密码，注意不是真正的密码，而是刚刚申请到的授权码
+    password: OFQLUJIPOZWIFQEF
+    port: 25
+    # 默认的邮件编码为UTF-8
+    default-encoding: UTF-8
+    # 配置SSL 加密工厂
+    properties:
+      mail:
+        smtp:
+          socketFactoryClass: javax.net.ssl.SSLSocketFactory
+        #表示开启 DEBUG 模式，这样，邮件发送过程的日志会在控制台打印出来，方便排查错误
+        debug: true
+

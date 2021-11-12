@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>九江战神训练营-入职通知书</title>
+</head>
+<body>
+<p>欢迎加入 <span style="color: red;font-size: 18px;font-weight: bold">九江战神训练营</span>,您的入职信息如下:</p>
+<table>
+    <tr>
+        <td>姓名</td>
+        <td th:text="${name}"></td>
+    </tr>
+    <tr>
+        <td>编号</td>
+        <td th:text="${workId}"></td>
+    </tr>
+    <tr>
+        <td>专业</td>
+        <td th:text="${speciality}"></td>
+    </tr>
+    <tr>
+        <td>学校</td>
+        <td th:text="${school}"></td>
+    </tr>
+    <tr>
+        <td>最高学历</td>
+        <td th:text="${tipTop}"></td>
+    </tr>
+</table>
+<div style="color: #ff1a0e">更美九江,等你创造!</div>
+</body>
+</html>
