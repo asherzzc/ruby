@@ -84,12 +84,15 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/css/**",
                         "/js/**",
                         "/index.html",
-                        "favicon.icon",
+                        "/favicon.ico",
                         "/webjars/**",
+                        "/",
                         "/doc.html",
                         "/swagger-resources/**",
                         "/v2/api-docs/**",
-                        "/kaptcha"
+                        "/kaptcha",
+                        "/ws/**",
+                        "/chat/**"
                 );
     }
 

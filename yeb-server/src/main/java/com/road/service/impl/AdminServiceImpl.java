@@ -1,7 +1,6 @@
 package com.road.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.road.mapper.AdminMapper;
 import com.road.mapper.RoleMapper;
@@ -103,6 +102,8 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
      */
     @Override
     public Admin getAdminInfoByUsername(String username) {
+        Admin admin = adminMapper.selectOne(new QueryWrapper<Admin>().eq("username", username).eq("enabled", 1));
+        log.info("admin:{}", admin.getUsername());
         return adminMapper.selectOne(new QueryWrapper<Admin>().eq("username", username).
                 eq("enabled", true));
     }
@@ -119,13 +120,13 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
 
     @Override
     public CommonResult updateUserPassword(Integer adminId, String oldPass, String pass) {
-        Admin admin = adminMapper.selectOne(new QueryWrapper<Admin>().eq("id", adminId));
+        Admin admin = adminMapper.selectById(adminId);
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         // 查看输入的旧密码是否和数据库存储的一致
         if (encoder.matches(oldPass, admin.getPassword())) {
             // 一致更新
-            int result = adminMapper.update(admin, new UpdateWrapper<Admin>().set("password", encoder
-                    .encode(pass)));
+            admin.setPassword(encoder.encode(pass));
+            int result = adminMapper.updateById(admin);
             if (1 == result) {
                 return CommonResult.success("更新成功！");
             }

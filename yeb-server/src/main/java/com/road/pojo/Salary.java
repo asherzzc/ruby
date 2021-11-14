@@ -3,6 +3,7 @@ package com.road.pojo;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author zhouc
@@ -24,7 +25,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("t_salary")
-@ApiModel(value="Salary对象", description="")
+@ApiModel(value = "Salary对象", description = "")
 public class Salary implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -55,6 +56,7 @@ public class Salary implements Serializable {
     private Float pensionPer;
 
     @ApiModelProperty(value = "启用时间")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime createDate;
 
     @ApiModelProperty(value = "医疗基数")
